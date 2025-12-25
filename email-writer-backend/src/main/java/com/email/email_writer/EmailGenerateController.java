@@ -1,0 +1,21 @@
+package com.email.email_writer;
+
+
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/email")
+@AllArgsConstructor
+@CrossOrigin(origins="*")
+public class EmailGenerateController {
+
+    private final EmailGenerateService emailGenerateService;
+
+    @PostMapping("/generate")
+    public ResponseEntity<String> GenerateEmail(@RequestBody EmailRequest emailRequest){
+          String response = emailGenerateService.generateEmailReply(emailRequest);
+         return ResponseEntity.ok(response);
+    }
+}
